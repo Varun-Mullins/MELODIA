@@ -20,6 +20,9 @@ function Artists() {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             {
+              artists === undefined ? (
+                <p>Fetching your artists!</p>
+              ) : (
               artists.map(artist => (
               <Artisttem
                 src={artist.images[0].url}
@@ -27,7 +30,7 @@ function Artists() {
                 label={count++}
                 path={artist.external_urls.spotify}
                 />
-              ))
+              )))
             }
           </ul>
         </div>

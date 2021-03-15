@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { Button, logoutButton } from './Button';
+import { Link, Redirect } from 'react-router-dom';
 import './Navbar.css';
+
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [clicked, setClicked] = useState(false);
+
+  
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -58,18 +63,21 @@ function Navbar() {
                 Tracks
               </Link>
             </li>
-
+            <a href='https://www.Spotify.com/us/logout'
+              className='nav-links'
+              onClick={closeMobileMenu}
+              > 
+                Log Out
+              </a>
             <li>
-              <Link
-                to='/playlist'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
-              >
-                Sign Up
-              </Link>
+              
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>Create Your Playlist</Button>}
+          {button && <Link to='/playlist'>
+            <Button buttonStyle='btn--outline'>
+              Create Your Playlist
+              </Button>
+              </Link>}
         </div>
       </nav>
     </>
@@ -77,3 +85,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

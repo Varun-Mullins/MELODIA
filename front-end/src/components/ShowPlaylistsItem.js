@@ -1,11 +1,11 @@
 import React from 'react';
 
-function ArtistItem(props) {
+function ShowPlaylistsItem(props) {
   return (
     <>
       <li className='cards__item'>
         <div className='cards__item__link'>
-          <a href={props.path} target="_blank" rel="noopener noreferrer">
+          <a href={props.path} style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
             <figure className='cards__item__pic-wrap' data-category={props.label}>
               <img
                 className='cards__item__img'
@@ -15,16 +15,14 @@ function ArtistItem(props) {
             </figure>
             <div className='cards__item__info'>
               <h5 className='cards__item__text'>{props.text}</h5>
+              <a href={props.path} target="_blank" rel="noopener noreferrer">
+              </a>
             </div>
           </a>
-          <div className='cards__item__info'>
-            <h5 className='cards__item__text1'>Popularity: {props.popularity}</h5>
-            <h5 className='cards__item__text1'>Followers: {props.followers.toLocaleString()}</h5>
-          </div>
         </div>
       </li>
     </>
   );
 }
 
-export default ArtistItem;
+export default ShowPlaylistsItem;

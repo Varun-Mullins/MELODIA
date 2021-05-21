@@ -2,16 +2,16 @@ import React from 'react';
 import '../../App.css';
 import NavBar from '../Navbar'
 import Footer from '../Footer';
-import Recents from '../RecentTracks'
+import Recommendations from '../Recommendations'
 
-function Recent() {
+function Recommendation() {
   return (
     <>
       <NavBar />
-      <Recents />
+      <Recommendations />
       <Footer />
     </>
   );
 }
 
-export default Recent;
+export default Recommendation;

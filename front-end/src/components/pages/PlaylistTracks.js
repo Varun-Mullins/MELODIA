@@ -1,16 +1,17 @@
 import React from 'react';
 import '../../App.css';
 import NavBar from '../Navbar'
-import Artists from '../Artists';
-
+import Tracks from '../Tracks';
+import { Button } from '../Button';
 import { Link } from 'react-router-dom';
   const Popup = props => {
   return (
     <>
       <NavBar />
-      <Artists />
+      <Tracks />
     <div className="popup-box">
       <div className="box">
+
         <form>
         <label>
           <p> Name: </p>
@@ -31,17 +32,16 @@ import { Link } from 'react-router-dom';
           </select>
           <br/>
           <br/>
-          
+       
       <button className="btn btn-lg pro" id="submit"
               value="Submit">Create Your Play List</button>
-              <br />
+    <br />
               <br />
 
       
-      <Link to='/Home'><button className="btn btn-lg pro" id="close"
+      <Link to='/Tracks'><button className="btn btn-lg pro" id="close"
               value="Close"> Close </button></Link>
       </form>
-        
       </div>
     </div>
 </>

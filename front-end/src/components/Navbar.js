@@ -1,33 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Button, logoutButton } from './Button';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
-
 
 function Navbar() {
   const [click, setClick] = useState(false);
-  const [button, setButton] = useState(true);
-  const [clicked, setClicked] = useState(false);
-
-  
-
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-  
-
-  const showButton = () => {
-    if (window.innerWidth <= 960) {
-      setButton(false);
-    } else {
-      setButton(true);
-    }
-  };
-
-  useEffect(() => {
-    showButton();
-  }, []);
-
-  window.addEventListener('resize', showButton);
 
   return (
     <>
@@ -47,6 +25,15 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
+                to='/tracks'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Tracks
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
                 to='/recents'
                 className='nav-links'
                 onClick={closeMobileMenu}
@@ -56,28 +43,31 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/tracks'
+                to='/recommendations'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Tracks
+                Recommended
               </Link>
             </li>
-            <a href='https://www.Spotify.com/us/logout'
-              className='nav-links'
-              onClick={closeMobileMenu}
-              > 
-                Log Out
-              </a>
-            <li>
-              
+            <li className='nav-item'>
+              <Link
+                to='/showplaylists'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Playlists
+              </Link>
             </li>
+            <li className='nav-item'>
+              <a href ='http://localhost:5000/logout'
+                className='nav-links'
+                >
+                  <img src='/images/logout.jpg' alt='Logout'/>
+              </a>
+              </li>
           </ul>
-          {button && <Link to='/playlist'>
-            <Button buttonStyle='btn--outline'>
-              Create Your Playlist
-              </Button>
-              </Link>}
+          
         </div>
       </nav>
     </>
@@ -85,4 +75,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

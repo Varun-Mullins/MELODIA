@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './Artists.css';
-import Artisttem from './ArtistItem';
+import TrackItem from './TrackItem';
 import axios from 'axios'
 import Popup from './Popup'
 
-function Artists() {
-  const [artists, setArtists] = useState([])
+function Tracks() {
+  const [tracks, setTracks] = useState([])
   const [selected, setSelected] = useState([])
   const [isOpen, setIsOpen] = useState(false);
   let ranges = [{'key':'short_term', 'value':'Last Month'}, {'key':'medium_term', 'value':'Last 6 Months'}, {'key':'long_term', 'value':'All Time'}]
   let count = 1;
+
   useEffect(() => {
-    axios.get('http://localhost:5000/artists', {withCredentials: true}).then(response => {
-      setArtists(response.data.items);
+    axios.get('http://localhost:5000/tracks', {withCredentials: true}).then(response => {
+      setTracks(response.data.items);
       setSelected('medium_term')
     });
   }, [])
@@ -21,11 +22,11 @@ function Artists() {
     setIsOpen(!isOpen);
   }
 
-  function getArtistsByTimeRange(range) {
+  function getTracksByTimeRange(range) {
     axios
-        .get("http://localhost:5000/artists/" + range, {withCredentials: true})
+        .get("http://localhost:5000/tracks/" + range, {withCredentials: true})
         .then(res => {
-            setArtists(res.data.items);
+            setTracks(res.data.items);
             setSelected(range)
           }
         )
@@ -33,16 +34,17 @@ function Artists() {
 
   return (
     <div className='cards'>
-      <h1>Top Artists</h1>
+      <h1>Top Tracks</h1>
       <div className='btn__container'>
         <div className='btn__wrapper'>
           <ul className='btn__items'>
             {ranges.map(range => 
               <li className='cards__item'>
                 <div className='cards__item__link'>
-                  <button className={range.key === selected ? 
-                  'btn-selected btn btn--primary btn--large' : 'btn-unselected btn btn--primary btn--large'}
-                   onClick={() => getArtistsByTimeRange(range.key)}>{range.value}</button>
+                  <button className={range.key === selected ? 'btn-selected btn btn--primary btn--large' : 'btn-unselected btn btn--primary btn--large'} 
+                  onClick={() => getTracksByTimeRange(range.key)}>
+                  {range.value}
+                  </button>
                 </div>
               </li>
             )}
@@ -57,24 +59,24 @@ function Artists() {
           />
           {isOpen && <Popup
             handleClose={togglePopup}
-            theList={artists}
-            type="Artists"
+            theList={tracks}
+            type="Tracks"
           />}
         </div>
       </div>
       <div className='cards__container'>
         <div className='cards__wrapper'>
           <ul className='cards__items'>
-        
             {
-              artists.map(artist => (
-                <Artisttem
-                  src={artist.images[0].url}
-                  text={artist.name}
-                  popularity={artist.popularity}
-                  followers={artist.followers.total}
-                  label={count++}
-                  path={artist.external_urls.spotify}
+              tracks.map(track => (
+              <TrackItem
+                src={track.album.images[0].url}
+                text={track.name}
+                popularity={track.popularity}
+                duration={track.duration_ms}
+                label={count++}
+                path={track.external_urls.spotify}
+                artists={track.artists}
                 />
               ))
             }
@@ -85,4 +87,4 @@ function Artists() {
   );
 }
 
-export default Artists;
+export default Tracks;

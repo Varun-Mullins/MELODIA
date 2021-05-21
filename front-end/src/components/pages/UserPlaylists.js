@@ -1,17 +1,17 @@
 import React from 'react';
 import '../../App.css';
-import NavBar from '../Navbar';
+import NavBar from '../Navbar'
 import Footer from '../Footer';
-import TracksPage from '../Tracks';
+import Playlists from '../ShowPlaylists'
 
-function Tracks() {
+function ShowPlaylists() {
   return (
     <>
       <NavBar />
-      <TracksPage />
+      <Playlists />
       <Footer />
     </>
   );
 }
 
-export default Tracks;
+export default ShowPlaylists;

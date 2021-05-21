@@ -1,14 +1,17 @@
 import React from 'react';
 import '../../App.css';
 import NavBar from '../Navbar'
-import Artists from '../Artists';
+import Recommendation from '../Recommendations';
+import { Button } from '../Button';
+
 
 import { Link } from 'react-router-dom';
+
   const Popup = props => {
   return (
     <>
       <NavBar />
-      <Artists />
+      <Recommendation />
     <div className="popup-box">
       <div className="box">
         <form>
@@ -38,7 +41,7 @@ import { Link } from 'react-router-dom';
               <br />
 
       
-      <Link to='/Home'><button className="btn btn-lg pro" id="close"
+      <Link to='/Recommendations'><button className="btn btn-lg pro" id="close"
               value="Close"> Close </button></Link>
       </form>
         
